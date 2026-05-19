@@ -1,0 +1,5 @@
+Abhishek is a Software Engineer.
+He works with React, Node.js, Express and MongoDB.
+He builds scalable full stack applications.
+He is interested in AI and DevOps.
+He has 2+ years experience in development.
