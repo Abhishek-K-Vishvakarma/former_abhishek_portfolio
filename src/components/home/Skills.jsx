@@ -306,43 +306,51 @@ export default function Skills() {
       </div>
 
       {/* =========================
-          POPUP
-      ========================= */}
+      POPUP
+========================= */}
       {selectedSkill && (
-        <div className="
-          fixed inset-0 z-[999]
-          flex items-center justify-center
-          bg-black/70 backdrop-blur-md
-          px-3 sm:px-5
-        ">
-          <div className="
-            relative w-full
-            max-w-sm sm:max-w-lg md:max-w-2xl
-            rounded-3xl sm:rounded-[35px]
-            border border-white/10
-            bg-[#07111f]/95
-            backdrop-blur-2xl
-            p-5 sm:p-8 md:p-10
-            shadow-[0_0_60px_rgba(34,211,238,0.2)]
-            overflow-hidden
-          ">
+        <div
+          className="
+      fixed inset-0 z-[999]
+      flex items-center justify-center
+      bg-black/70 backdrop-blur-md
+      px-3 sm:px-5
+      pointer-events-auto
+    "
+          onClick={() => setSelectedSkill(null)}   // outside click close
+        >
+          <div
+            className="
+        relative w-full
+        max-w-sm sm:max-w-lg md:max-w-2xl
+        rounded-3xl sm:rounded-[35px]
+        border border-white/10
+        bg-[#07111f]/95
+        backdrop-blur-2xl
+        p-5 sm:p-8 md:p-10
+        shadow-[0_0_60px_rgba(34,211,238,0.2)]
+        overflow-hidden
+        pointer-events-auto
+      "
+            onClick={(e) => e.stopPropagation()} // prevent close on card click
+          >
 
-            {/* Glow */}
-            <div className="absolute -top-16 -right-16 w-[160px] sm:w-[220px] h-[160px] sm:h-[220px] bg-cyan-500/10 blur-[100px] rounded-full"></div>
-            <div className="absolute -bottom-16 -left-16 w-[160px] sm:w-[220px] h-[160px] sm:h-[220px] bg-pink-500/10 blur-[100px] rounded-full"></div>
+            {/* Glow (FIXED) */}
+            <div className="absolute -top-16 -right-16 w-[160px] sm:w-[220px] h-[160px] sm:h-[220px] bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+            <div className="absolute -bottom-16 -left-16 w-[160px] sm:w-[220px] h-[160px] sm:h-[220px] bg-pink-500/10 blur-[100px] rounded-full pointer-events-none"></div>
 
-            {/* CLOSE BUTTON */}
+            {/* CLOSE BUTTON (FIXED) */}
             <button
               onClick={() => setSelectedSkill(null)}
               className="
-                absolute top-4 right-4
-                w-8 h-8 sm:w-10 sm:h-10
-                rounded-full
-                bg-white/5 border border-white/10
-                text-white
-                hover:bg-red-500
-                transition
-              "
+          absolute top-4 right-4 z-[1000]
+          w-10 h-10
+          rounded-full
+          bg-white/10 border border-white/10
+          text-white
+          hover:bg-red-500
+          transition
+        "
             >
               ✕
             </button>
@@ -352,11 +360,11 @@ export default function Skills() {
 
               {/* ICON */}
               <div className="
-                w-16 h-16 sm:w-24 sm:h-24
-                rounded-2xl sm:rounded-3xl
-                bg-white/5 border border-white/10
-                flex items-center justify-center
-              ">
+          w-16 h-16 sm:w-24 sm:h-24
+          rounded-2xl sm:rounded-3xl
+          bg-white/5 border border-white/10
+          flex items-center justify-center
+        ">
                 <img
                   src={selectedSkill.image}
                   alt={selectedSkill.name}
@@ -366,32 +374,32 @@ export default function Skills() {
 
               {/* TITLE */}
               <h2 className="
-                text-xl sm:text-3xl md:text-4xl
-                font-black text-white
-                mt-5 sm:mt-8
-              ">
+          text-xl sm:text-3xl md:text-4xl
+          font-black text-white
+          mt-5 sm:mt-8
+        ">
                 {selectedSkill.name}
               </h2>
 
               {/* DESCRIPTION */}
               <p className="
-                text-slate-400
-                text-sm sm:text-base md:text-lg
-                leading-relaxed sm:leading-8
-                mt-4 sm:mt-6
-              ">
+          text-slate-400
+          text-sm sm:text-base md:text-lg
+          leading-relaxed sm:leading-8
+          mt-4 sm:mt-6
+        ">
                 {selectedSkill.description}
               </p>
 
               {/* COUNTDOWN */}
               <div className="
-                mt-6 sm:mt-8
-                inline-flex items-center gap-2 sm:gap-3
-                px-4 sm:px-5 py-2 sm:py-3
-                rounded-xl sm:rounded-2xl
-                bg-cyan-500/10
-                border border-cyan-400/20
-              ">
+          mt-6 sm:mt-8
+          inline-flex items-center gap-2 sm:gap-3
+          px-4 sm:px-5 py-2 sm:py-3
+          rounded-xl sm:rounded-2xl
+          bg-cyan-500/10
+          border border-cyan-400/20
+        ">
                 <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-cyan-400 animate-pulse"></div>
                 <p className="text-cyan-300 text-xs sm:text-sm font-medium">
                   Auto closing in {countdown}s

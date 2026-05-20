@@ -12,8 +12,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Abhishek Vishvakarma",
-  description: "Full Stack & AI/ML Engineer Portfolio",
+  title: "Abhishek Vishvakarma | Software Engineer",
+  description: "MERN Stack, AI/ML, FastAPI, Full Stack Developer Portfolio",
+  icons: {
+    icon: "/my_image.png"
+  }
 };
 
 export default function RootLayout({ children }) {
