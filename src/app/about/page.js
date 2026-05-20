@@ -33,7 +33,22 @@ export default function AboutPage() {
 
       <Navbar />
 
-      <section className="relative min-h-screen overflow-hidden bg-[#030712] py-16 sm:py-24">
+      <section
+        className="
+    relative
+    min-h-screen
+    overflow-hidden
+
+    pt-28
+    sm:pt-32
+
+    pb-16
+    sm:pb-24
+
+    px-4
+    sm:px-0
+  "
+      >
 
         {/* Background Glow */}
         <div className="absolute top-0 left-0 w-[220px] sm:w-[400px] h-[220px] sm:h-[400px] bg-cyan-500/10 blur-[140px] rounded-full"></div>
@@ -47,7 +62,7 @@ export default function AboutPage() {
     ===================== */}
           <div className="max-w-4xl mx-auto text-center">
 
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-400/20 mb-6">
+            <div className="inline-flex flex-row items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-400/20 mb-6 overflow-x-auto">
               <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></div>
               <p className="text-[10px] sm:text-xs uppercase tracking-[4px] text-cyan-400 font-semibold">
                 About • Experience • Skills
@@ -77,7 +92,7 @@ export default function AboutPage() {
           {/* =====================
         MAIN SECTION
     ===================== */}
-          <div className="mt-14 sm:mt-20 grid lg:grid-cols-2 gap-8 sm:gap-14 items-center">
+          <div className="mt-14 sm:mt-20 grid lg:grid-cols-2 gap-8 sm:gap-14 items-start">
 
             {/* LEFT — IMAGE */}
             <div className="relative flex justify-center">

@@ -10,7 +10,22 @@ export default function ProjectsPage() {
     <>
       <Navbar />
 
-      <section className="relative min-h-screen overflow-hidden py-16 sm:py-24 px-4 sm:px-0">
+      <section
+        className="
+    relative
+    min-h-screen
+    overflow-hidden
+
+    pt-28
+    sm:pt-32
+
+    pb-16
+    sm:pb-20
+
+    px-4
+    sm:px-0
+  "
+      >
 
         {/* Background */}
         <div className="absolute top-0 left-0 w-[220px] sm:w-[400px] h-[220px] sm:h-[400px] bg-cyan-500/10 blur-[100px] sm:blur-[140px] rounded-full"></div>
@@ -22,17 +37,82 @@ export default function ProjectsPage() {
           {/* Heading */}
           <div className="text-center max-w-4xl mx-auto">
 
-            <p className="uppercase tracking-[4px] sm:tracking-[5px] text-sky-400 text-xs sm:text-sm mb-4 sm:mb-5">
-              Portfolio • Case Studies • Real Work
-            </p>
+            <div
+              className="
+    inline-flex
+    items-center
+    gap-2
+    px-4
+    py-2
+    rounded-full
+    bg-cyan-500/10
+    border
+    border-cyan-400/20
+    mb-6
+    "
+            >
 
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-black leading-tight">
-              Featured <span className="gradient-text">Projects</span>
+              <div
+                className="
+      w-1.5
+      h-1.5
+      rounded-full
+      bg-cyan-400
+      animate-pulse
+      shadow-[0_0_8px_rgba(34,211,238,0.8)]
+      "
+              />
+
+              <p
+                className="
+      uppercase
+      tracking-[4px]
+      sm:tracking-[5px]
+      text-cyan-400
+      text-[10px]
+      sm:text-xs
+      font-semibold
+      "
+              >
+                Developer • Innovation • Technology
+              </p>
+
+            </div>
+
+            <h1
+              className="
+    text-3xl
+    sm:text-5xl
+    md:text-6xl
+    font-black
+    leading-tight
+    "
+            >
+              Featured{" "}
+              <span className="gradient-text">
+                Projects
+              </span>
             </h1>
 
-            <p className="text-slate-400 mt-5 sm:mt-8 text-sm sm:text-lg leading-relaxed px-2 sm:px-0">
-              Real-world scalable applications built using MERN Stack, AI integrations,
-              cloud deployment, Docker and modern frontend systems.
+            <p
+              className="
+    text-slate-400
+    mt-5
+    sm:mt-8
+    text-sm
+    sm:text-lg
+    leading-7
+    sm:leading-8
+    max-w-3xl
+    mx-auto
+    px-2
+    sm:px-0
+    "
+            >
+              Real-world scalable applications built using
+              MERN Stack, AI integrations,
+              cloud deployment, Docker,
+              and modern frontend systems.
             </p>
 
           </div>
