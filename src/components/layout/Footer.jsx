@@ -70,7 +70,7 @@ export default function Footer() {
 
         {/* Small note */}
         <p className="text-center text-xs text-slate-500 mt-6">
-          Built with ❤️ using React & Tailwind CSS
+          Engineered with ❤️ using Next.js, Tailwind CSS & AI Innovation 🤖✨
         </p>
 
       </div>
