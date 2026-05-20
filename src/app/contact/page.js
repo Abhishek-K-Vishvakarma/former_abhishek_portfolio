@@ -1,7 +1,70 @@
+"use client"
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { useState } from "react";
 
 export default function ContactPage() {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
+
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    });
+
+  };
+
+  const submitForm = async (e) => {
+
+    e.preventDefault();
+
+    setLoading(true);
+
+    try {
+
+      const response = await fetch(
+        "/api/chat/contact",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json"
+          },
+
+          body: JSON.stringify(form)
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.success) {
+
+        alert("Message Sent 🚀");
+
+        setForm({
+          name: "",
+          email: "",
+          message: ""
+        });
+
+      }
+
+    } catch {
+
+      alert("Something went wrong");
+
+    }
+
+    setLoading(false);
+
+  };
 
   return (
 
@@ -126,26 +189,60 @@ export default function ContactPage() {
                 Send Message
               </h2>
 
-              <form className="space-y-5 sm:space-y-6">
+              <form
+                onSubmit={submitForm}
+                className="space-y-5"
+              >
 
-                {/* Inputs */}
-                <input className="w-full bg-[#0f172a] border border-white/10 rounded-xl px-4 sm:px-5 py-3 sm:py-4 text-white text-sm sm:text-base outline-none focus:border-cyan-400" placeholder="Full Name" />
+                <input
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  placeholder="Full Name"
+                  required
+                  className="w-full bg-[#0f172a] border border-white/10 rounded-xl p-4 text-white"
+                />
 
-                <input className="w-full bg-[#0f172a] border border-white/10 rounded-xl px-4 sm:px-5 py-3 sm:py-4 text-white text-sm sm:text-base outline-none focus:border-cyan-400" placeholder="Email Address" />
+                <input
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  placeholder="Email"
+                  required
+                  type="email"
+                  className="w-full bg-[#0f172a] border border-white/10 rounded-xl p-4 text-white"
+                />
 
-                <textarea rows="5" className="w-full bg-[#0f172a] border border-white/10 rounded-xl px-4 sm:px-5 py-3 sm:py-4 text-white text-sm sm:text-base outline-none resize-none focus:border-cyan-400" placeholder="Message"></textarea>
+                <textarea
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  placeholder="Message"
+                  required
+                  rows={5}
+                  className="w-full bg-[#0f172a] border border-white/10 rounded-xl p-4 text-white"
+                />
 
-                {/* Button */}
-                <button className="
-            w-full py-3 sm:py-4
-            rounded-xl
-            bg-gradient-to-r from-cyan-500 to-blue-500
-            text-white font-semibold
-            text-sm sm:text-base
-            hover:scale-[1.02]
-            transition
-          ">
-                  Send Message
+                <button
+                  disabled={loading}
+                  className="
+w-full
+bg-cyan-500
+py-4
+rounded-xl
+font-bold
+text-white
+"
+                >
+
+                  {
+                    loading
+                      ?
+                      "Sending..."
+                      :
+                      "Send Message"
+                  }
+
                 </button>
 
               </form>
