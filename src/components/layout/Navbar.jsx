@@ -1,23 +1,22 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
-import { usePathname } from "next/navigation";
+import Link from 'next/link';
+import { useState } from 'react';
+import { Menu, X } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
   const navLinks = [
-    { name: "About", path: "/about" },
-    { name: "Projects", path: "/projects" },
-    { name: "Contact", path: "/contact" },
+    { name: 'About', path: '/about' },
+    { name: 'Projects', path: '/projects' },
+    { name: 'Contact', path: '/contact' },
   ];
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 px-4 py-4">
-
       {/* Floating Navbar */}
       <div
         className="
@@ -31,7 +30,6 @@ export default function Navbar() {
           overflow-hidden
         "
       >
-
         {/* Glow Effects */}
         <div className="absolute -top-20 -left-20 w-60 h-60 bg-cyan-500/10 blur-[100px] rounded-full"></div>
         <div className="absolute -bottom-20 -right-20 w-60 h-60 bg-pink-500/10 blur-[100px] rounded-full"></div>
@@ -40,7 +38,6 @@ export default function Navbar() {
         <div className="absolute inset-0 rounded-[28px] border border-white/5"></div>
 
         <div className="relative z-10 px-6 md:px-10 h-20 flex items-center justify-between">
-
           {/* LOGO */}
           <Link href="/" className="group relative">
             <h1 className="text-3xl md:text-4xl font-black tracking-tight text-white">
@@ -49,11 +46,13 @@ export default function Navbar() {
                 shek
               </span>
             </h1>
-            <div className="
+            <div
+              className="
               absolute -bottom-1 left-0 h-[3px] w-0 rounded-full
               bg-gradient-to-r from-cyan-400 to-pink-500
               group-hover:w-full transition-all duration-500
-            "></div>
+            "
+            ></div>
           </Link>
 
           {/* Desktop Menu */}
@@ -65,17 +64,20 @@ export default function Navbar() {
                 className={`
                   relative px-6 py-3 rounded-2xl text-[15px] font-semibold
                   transition-all duration-300 group
-                  ${ pathname === item.path
-                    ? "text-white bg-white/10 border border-cyan-400/30"
-                    : "text-slate-300 hover:text-white hover:bg-white/5"
+                  ${
+                    pathname === item.path
+                      ? 'text-white bg-white/10 border border-cyan-400/30'
+                      : 'text-slate-300 hover:text-white hover:bg-white/5'
                   }
                 `}
               >
-                <span className="
+                <span
+                  className="
                   absolute inset-0 rounded-2xl
                   bg-gradient-to-r from-cyan-500/0 via-cyan-500/10 to-pink-500/0
                   opacity-0 group-hover:opacity-100 transition-all duration-500
-                "></span>
+                "
+                ></span>
                 <span className="relative z-10">{item.name}</span>
               </Link>
             ))}
@@ -83,7 +85,6 @@ export default function Navbar() {
 
           {/* Right Section */}
           <div className="flex items-center gap-4">
-
             {/* Hire Button Desktop */}
             <Link
               href="/contact"
@@ -98,11 +99,13 @@ export default function Navbar() {
               "
             >
               <span className="relative z-10">Hire Me</span>
-              <div className="
+              <div
+                className="
                 absolute inset-0 translate-x-[-100%] hover:translate-x-[100%]
                 transition-all duration-1000
                 bg-gradient-to-r from-transparent via-white/20 to-transparent
-              "></div>
+              "
+              ></div>
             </Link>
 
             {/* Mobile Menu Button */}
@@ -118,7 +121,6 @@ export default function Navbar() {
             >
               {open ? <X size={22} /> : <Menu size={22} />}
             </button>
-
           </div>
         </div>
 
@@ -128,14 +130,13 @@ export default function Navbar() {
         <div
           className={`
             md:hidden transition-all duration-500 overflow-hidden
-            ${ open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0" }
+            ${open ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}
           `}
         >
           {/* Divider */}
           <div className="mx-6 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
 
           <div className="px-5 py-5 flex flex-col gap-3">
-
             {/* Nav Links */}
             {navLinks.map((item, index) => {
               const isActive = pathname === item.path;
@@ -150,14 +151,15 @@ export default function Navbar() {
                     font-semibold text-[15px]
                     flex items-center justify-between
                     transition-all duration-300 group
-                    ${ isActive
-                      ? `
+                    ${
+                      isActive
+                        ? `
                           text-white
                           bg-gradient-to-r from-cyan-500/20 via-blue-500/10 to-pink-500/20
                           border border-cyan-400/40
                           shadow-[0_0_20px_rgba(34,211,238,0.1)]
                         `
-                      : `
+                        : `
                           text-slate-300
                           border border-white/8
                           bg-white/5
@@ -175,15 +177,21 @@ export default function Navbar() {
                     {isActive ? (
                       <span className="flex items-center gap-1.5">
                         <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                        <span className="text-cyan-400 text-xs font-medium">Active</span>
+                        <span className="text-cyan-400 text-xs font-medium">
+                          Active
+                        </span>
                       </span>
                     ) : (
-                      <span className="
+                      <span
+                        className="
                         text-slate-500 group-hover:text-cyan-400
                         group-hover:translate-x-1
                         transition-all duration-300
                         text-lg
-                      ">→</span>
+                      "
+                      >
+                        →
+                      </span>
                     )}
                   </span>
 
@@ -191,7 +199,6 @@ export default function Navbar() {
                   {isActive && (
                     <div className="absolute left-0 top-2 bottom-2 w-[3px] rounded-full bg-gradient-to-b from-cyan-400 to-pink-500"></div>
                   )}
-
                 </Link>
               );
             })}
@@ -212,10 +219,8 @@ export default function Navbar() {
             >
               <span className="relative z-10">✉ Hire Me</span>
             </Link>
-
           </div>
         </div>
-
       </div>
     </header>
   );

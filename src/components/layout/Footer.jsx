@@ -1,17 +1,14 @@
 export default function Footer() {
   return (
     <footer className="relative mt-24 border-t border-white/10 bg-[#020617]">
-
       {/* Glow background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(34,211,238,0.08),transparent_60%)]"></div>
 
       <div className="container-width relative z-10 py-10">
-
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-
           {/* LEFT TEXT */}
           <p className="text-slate-400 text-sm text-center md:text-left">
-            © 2026{" "}
+            © 2026{' '}
             <span className="text-white font-semibold">
               Abhishek Vishvakarma
             </span>
@@ -20,11 +17,10 @@ export default function Footer() {
 
           {/* LINKS */}
           <div className="flex items-center gap-3 sm:gap-5 flex-wrap justify-center">
-
             {[
-              { name: "GitHub", link: "#" },
-              { name: "LinkedIn", link: "#" },
-              { name: "Email", link: "#" },
+              { name: 'GitHub', link: '#' },
+              { name: 'LinkedIn', link: '#' },
+              { name: 'Email', link: '#' },
             ].map((item, index) => (
               <a
                 key={index}
@@ -51,16 +47,16 @@ export default function Footer() {
                 {item.name}
 
                 {/* Hover glow line */}
-                <span className="
+                <span
+                  className="
                   absolute inset-0 rounded-full opacity-0 hover:opacity-100
                   bg-gradient-to-r from-cyan-500/10 to-pink-500/10
                   transition
-                "></span>
+                "
+                ></span>
               </a>
             ))}
-
           </div>
-
         </div>
 
         {/* Bottom line */}
@@ -72,7 +68,6 @@ export default function Footer() {
         <p className="text-center text-xs text-slate-500 mt-6">
           Engineered with ❤️ using Next.js, Tailwind CSS & AI Innovation 🤖✨
         </p>
-
       </div>
     </footer>
   );

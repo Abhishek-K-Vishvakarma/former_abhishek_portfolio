@@ -1,71 +1,50 @@
-import connectDB from "@/lib/db";
-import Contact from "@/models/Contact";
-import nodemailer from "nodemailer";
+import connectDB from '@/lib/db';
+import Contact from '@/models/Contact';
+import nodemailer from 'nodemailer';
 
 export async function POST(req) {
-
   try {
-
     await connectDB();
 
     const body = await req.json();
 
-    const {
-      name,
-      email,
-      message
-    } = body;
+    const { name, email, message } = body;
 
     // Validation
 
-    if (
-      !name ||
-      !email ||
-      !message
-    ) {
-
+    if (!name || !email || !message) {
       return Response.json(
         {
           success: false,
-          error: "All fields are required"
+          error: 'All fields are required',
         },
         {
-          status: 400
+          status: 400,
         }
       );
-
     }
 
     // Save MongoDB
 
     await Contact.create({
-
       name: name.trim(),
 
       email: email.trim(),
 
-      message: message.trim()
-
+      message: message.trim(),
     });
 
     // Mail Config
 
-    const transporter =
-      nodemailer.createTransport({
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
 
-        service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
 
-        auth: {
-
-          user:
-            process.env.EMAIL_USER,
-
-          pass:
-            process.env.EMAIL_PASS
-
-        }
-
-      });
+        pass: process.env.EMAIL_PASS,
+      },
+    });
     // Verify Gmail
 
     await transporter.verify();
@@ -73,15 +52,11 @@ export async function POST(req) {
     // Owner Mail
 
     await transporter.sendMail({
+      from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
 
-      from:
-        `"Portfolio Contact" <${ process.env.EMAIL_USER }>`,
+      to: process.env.OWNER_EMAIL,
 
-      to:
-        process.env.OWNER_EMAIL,
-
-      subject:
-        `🚀 New Portfolio Contact - ${ name }`,
+      subject: `🚀 New Portfolio Contact - ${name}`,
 
       html: `
 
@@ -99,12 +74,12 @@ export async function POST(req) {
 
       <p>
       <b>Name:</b>
-      ${ name }
+      ${name}
       </p>
 
       <p>
       <b>Email:</b>
-      ${ email }
+      ${email}
       </p>
 
       <p>
@@ -118,28 +93,23 @@ export async function POST(req) {
       border-radius:8px;
       ">
 
-      ${ message }
+      ${message}
 
       </div>
 
       </div>
 
-      `
-
+      `,
     });
 
     // User Mail
 
     await transporter.sendMail({
+      from: `"Abhishek Vishvakarma" <${process.env.EMAIL_USER}>`,
 
-      from:
-        `"Abhishek Vishvakarma" <${ process.env.EMAIL_USER }>`,
+      to: email,
 
-      to:
-        email,
-
-      subject:
-        "Message Received Successfully 🚀",
+      subject: 'Message Received Successfully 🚀',
 
       html: `
 
@@ -150,7 +120,7 @@ export async function POST(req) {
       ">
 
       <h2>
-      Thank You ${ name }
+      Thank You ${name}
       </h2>
 
       <p>
@@ -179,47 +149,27 @@ export async function POST(req) {
 
       </div>
 
-      `
-
+      `,
     });
 
     return Response.json({
-
       success: true,
 
-      message:
-        "Message sent successfully"
-
+      message: 'Message sent successfully',
     });
-
-  }
-
-  catch (error) {
-
-    console.log(
-      "CONTACT API ERROR:",
-      error
-    );
+  } catch (error) {
+    console.log('CONTACT API ERROR:', error);
 
     return Response.json(
-
       {
-
         success: false,
 
-        error:
-          error.message
-
+        error: error.message,
       },
 
       {
-
-        status: 500
-
+        status: 500,
       }
-
     );
-
   }
-
 }

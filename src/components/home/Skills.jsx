@@ -1,11 +1,10 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
-import SectionTitle from "../common/SectionTitle";
-import skills from "@/data/skills";
+import { useEffect, useRef, useState } from 'react';
+import SectionTitle from '../common/SectionTitle';
+import skills from '@/data/skills';
 
 export default function Skills() {
-
   const sectionRef = useRef(null);
 
   const [visible, setVisible] = useState(false);
@@ -20,8 +19,8 @@ export default function Skills() {
       setIsMobile(window.innerWidth < 640);
     };
     handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
@@ -55,17 +54,12 @@ export default function Skills() {
   }, [selectedSkill]);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative py-28 overflow-hidden"
-    >
-
+    <section ref={sectionRef} className="relative py-28 overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-0 left-0 w-[320px] h-[320px] bg-cyan-500/10 blur-[120px] rounded-full"></div>
       <div className="absolute bottom-0 right-0 w-[320px] h-[320px] bg-pink-500/10 blur-[120px] rounded-full"></div>
 
       <div className="container-width relative z-10">
-
         {/* Heading */}
         <SectionTitle
           title="Technical Skills"
@@ -107,10 +101,12 @@ export default function Skills() {
         {/* =========================
     ORBIT / GRID WRAPPER
 ========================= */}
-        <div className={`
+        <div
+          className={`
   relative transition-all duration-1000
-  ${ gridView
-            ? `
+  ${
+    gridView
+      ? `
         grid
         grid-cols-3
         sm:grid-cols-4
@@ -122,15 +118,15 @@ export default function Skills() {
         w-full
         mt-4
       `
-            : `
+      : `
         flex
         items-center
         justify-center
         min-h-[420px] sm:min-h-[600px] lg:min-h-[750px]
       `
-          }
-`}>
-
+  }
+`}
+        >
           {/* =========================
       ORBIT VIEW
   ========================= */}
@@ -150,16 +146,18 @@ export default function Skills() {
           transition-all duration-700
           hover:scale-110
           cursor-pointer
-          ${ visible ? "scale-100 opacity-100" : "scale-50 opacity-0" }
+          ${visible ? 'scale-100 opacity-100' : 'scale-50 opacity-0'}
         `}
               >
-                <div className="
+                <div
+                  className="
           w-[105px] h-[105px]
           sm:w-[140px] sm:h-[140px]
           rounded-full bg-[#07111f]
           border border-white/10
           flex items-center justify-center text-center
-        ">
+        "
+                >
                   <h2 className="text-white font-black text-lg sm:text-2xl leading-7">
                     MY <br /> SKILLS
                   </h2>
@@ -167,12 +165,14 @@ export default function Skills() {
               </button>
 
               {/* Orbit Ring */}
-              <div className={`
+              <div
+                className={`
         absolute rounded-full
         border border-cyan-400/10
         animate-spin-slow
-        ${ isMobile ? "w-[320px] h-[320px]" : "w-[620px] h-[620px]" }
-      `}></div>
+        ${isMobile ? 'w-[320px] h-[320px]' : 'w-[620px] h-[620px]'}
+      `}
+              ></div>
             </>
           )}
 
@@ -180,7 +180,6 @@ export default function Skills() {
       SKILLS
   ========================= */}
           {skills.map((skill, index) => {
-
             const angle = (360 / skills.length) * index;
             const radius = isMobile ? 145 : 290;
 
@@ -188,25 +187,24 @@ export default function Skills() {
               <div
                 key={index}
                 className={`
-          ${ gridView ? "relative" : "absolute" }
+          ${gridView ? 'relative' : 'absolute'}
           transition-all duration-1000
           group
-          ${ visible ? "opacity-100 scale-100" : "opacity-0 scale-0" }
+          ${visible ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}
         `}
                 style={
                   gridView
                     ? {}
                     : {
-                      transform: `
-                  rotate(${ angle }deg)
-                  translate(${ radius }px)
-                  rotate(-${ angle }deg)
+                        transform: `
+                  rotate(${angle}deg)
+                  translate(${radius}px)
+                  rotate(-${angle}deg)
                 `,
-                      transitionDelay: `${ index * 120 }ms`,
-                    }
+                        transitionDelay: `${index * 120}ms`,
+                      }
                 }
               >
-
                 {/* CARD */}
                 <div
                   onClick={() => setSelectedSkill(skill)}
@@ -234,29 +232,34 @@ export default function Skills() {
             hover:shadow-[0_8px_30px_rgba(34,211,238,0.2)]
           "
                 >
-
                   {/* Top shine line */}
-                  <div className="
+                  <div
+                    className="
             absolute top-0 left-4 right-4 h-[1px]
             bg-gradient-to-r from-transparent via-white/30 to-transparent
-          "></div>
+          "
+                  ></div>
 
                   {/* Hover glow overlay */}
-                  <div className="
+                  <div
+                    className="
             absolute inset-0 opacity-0
             group-hover:opacity-100
             transition duration-400
             bg-gradient-to-br from-cyan-500/10 via-transparent to-pink-500/10
-          "></div>
+          "
+                  ></div>
 
                   {/* Corner accent */}
-                  <div className="
+                  <div
+                    className="
             absolute top-2 right-2
             w-1 h-1 rounded-full
             bg-cyan-400/0
             group-hover:bg-cyan-400/80
             transition-all duration-300
-          "></div>
+          "
+                  ></div>
 
                   {/* IMAGE */}
                   <img
@@ -275,7 +278,8 @@ export default function Skills() {
                   />
 
                   {/* NAME */}
-                  <p className="
+                  <p
+                    className="
             relative z-10
             text-[9px] sm:text-[11px] md:text-xs
             text-slate-300
@@ -283,25 +287,26 @@ export default function Skills() {
             font-semibold
             mt-2.5 text-center leading-tight
             transition-colors duration-300
-          ">
+          "
+                  >
                     {skill.name}
                   </p>
 
                   {/* Bottom glow bar on hover */}
-                  <div className="
+                  <div
+                    className="
             absolute bottom-0 left-1/2 -translate-x-1/2
             h-[2px] w-0
             group-hover:w-3/4
             rounded-full
             bg-gradient-to-r from-cyan-400 to-pink-400
             transition-all duration-500
-          "></div>
-
+          "
+                  ></div>
                 </div>
               </div>
             );
           })}
-
         </div>
       </div>
 
@@ -317,7 +322,7 @@ export default function Skills() {
       px-3 sm:px-5
       pointer-events-auto
     "
-          onClick={() => setSelectedSkill(null)}   // outside click close
+          onClick={() => setSelectedSkill(null)} // outside click close
         >
           <div
             className="
@@ -334,7 +339,6 @@ export default function Skills() {
       "
             onClick={(e) => e.stopPropagation()} // prevent close on card click
           >
-
             {/* Glow (FIXED) */}
             <div className="absolute -top-16 -right-16 w-[160px] sm:w-[220px] h-[160px] sm:h-[220px] bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none"></div>
             <div className="absolute -bottom-16 -left-16 w-[160px] sm:w-[220px] h-[160px] sm:h-[220px] bg-pink-500/10 blur-[100px] rounded-full pointer-events-none"></div>
@@ -357,14 +361,15 @@ export default function Skills() {
 
             {/* CONTENT */}
             <div className="relative z-10">
-
               {/* ICON */}
-              <div className="
+              <div
+                className="
           w-16 h-16 sm:w-24 sm:h-24
           rounded-2xl sm:rounded-3xl
           bg-white/5 border border-white/10
           flex items-center justify-center
-        ">
+        "
+              >
                 <img
                   src={selectedSkill.image}
                   alt={selectedSkill.name}
@@ -373,44 +378,48 @@ export default function Skills() {
               </div>
 
               {/* TITLE */}
-              <h2 className="
+              <h2
+                className="
           text-xl sm:text-3xl md:text-4xl
           font-black text-white
           mt-5 sm:mt-8
-        ">
+        "
+              >
                 {selectedSkill.name}
               </h2>
 
               {/* DESCRIPTION */}
-              <p className="
+              <p
+                className="
           text-slate-400
           text-sm sm:text-base md:text-lg
           leading-relaxed sm:leading-8
           mt-4 sm:mt-6
-        ">
+        "
+              >
                 {selectedSkill.description}
               </p>
 
               {/* COUNTDOWN */}
-              <div className="
+              <div
+                className="
           mt-6 sm:mt-8
           inline-flex items-center gap-2 sm:gap-3
           px-4 sm:px-5 py-2 sm:py-3
           rounded-xl sm:rounded-2xl
           bg-cyan-500/10
           border border-cyan-400/20
-        ">
+        "
+              >
                 <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-cyan-400 animate-pulse"></div>
                 <p className="text-cyan-300 text-xs sm:text-sm font-medium">
                   Auto closing in {countdown}s
                 </p>
               </div>
-
             </div>
           </div>
         </div>
       )}
-
     </section>
   );
 }

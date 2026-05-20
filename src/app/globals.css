@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background: #0B1120;
+  background: #0b1120;
   color: white;
 }
 
@@ -20,7 +20,6 @@ body {
 .animate-spin-slow {
   animation: spinSlow 25s linear infinite;
 }
-
 
 .animate-marquee {
   animation: marquee 12s linear infinite;

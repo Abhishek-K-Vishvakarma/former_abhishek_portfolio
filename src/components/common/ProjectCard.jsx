@@ -1,14 +1,9 @@
 export default function ProjectCard({ project }) {
   return (
     <div className="glass-card rounded-3xl p-6 hover:-translate-y-2 transition duration-300">
+      <h3 className="text-2xl font-semibold mb-4">{project.title}</h3>
 
-      <h3 className="text-2xl font-semibold mb-4">
-        {project.title}
-      </h3>
-
-      <p className="text-slate-400 leading-7">
-        {project.description}
-      </p>
+      <p className="text-slate-400 leading-7">{project.description}</p>
 
       <div className="flex flex-wrap gap-3 mt-6">
         {project.tech.map((item, index) => (
@@ -22,10 +17,7 @@ export default function ProjectCard({ project }) {
       </div>
 
       <div className="flex gap-4 mt-8">
-        <a
-          href={project.github}
-          className="text-sky-400 hover:text-sky-300"
-        >
+        <a href={project.github} className="text-sky-400 hover:text-sky-300">
           GitHub →
         </a>
 
@@ -36,7 +28,6 @@ export default function ProjectCard({ project }) {
           Live →
         </a>
       </div>
-
     </div>
   );
 }

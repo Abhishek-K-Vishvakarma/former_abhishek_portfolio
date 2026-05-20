@@ -1,42 +1,40 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from 'react';
 
 export default function ChatBot() {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
-
+  const messagesEndRef = useRef(null);
   const askAI = async () => {
     if (!input.trim()) return;
 
     const userMessage = input;
 
-    setMessages((prev) => [
-      ...prev,
-      { role: "user", text: userMessage },
-    ]);
+    setMessages((prev) => [...prev, { role: 'user', text: userMessage }]);
 
-    setInput("");
+    setInput('');
     setLoading(true);
 
-    const res = await fetch("/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: userMessage }),
     });
 
     const data = await res.json();
 
-    setMessages((prev) => [
-      ...prev,
-      { role: "ai", text: data.reply },
-    ]);
+    setMessages((prev) => [...prev, { role: 'ai', text: data.reply }]);
 
     setLoading(false);
   };
-
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({
+      behavior: 'smooth',
+    });
+  }, [messages, loading]);
   return (
     <>
       {/* =========================
@@ -76,10 +74,9 @@ export default function ChatBot() {
       overflow-hidden
       transition-all duration-500
 
-      ${ open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-40 pointer-events-none" }
+      ${open ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-40 pointer-events-none'}
     `}
       >
-
         {/* =========================
         AI HEADER (PREMIUM)
     ========================= */}
@@ -107,7 +104,6 @@ export default function ChatBot() {
           </div>
 
           <div className="relative flex flex-col items-center justify-center py-5">
-
             {/* AI AVATAR */}
             <div className="relative">
               <img
@@ -148,11 +144,10 @@ export default function ChatBot() {
         CHAT BOX
     ========================= */}
         <div className="flex-1 overflow-y-auto p-4 space-y-3">
-
           {messages.map((m, i) => (
             <div
               key={i}
-              className={`flex ${ m.role === "user" ? "justify-end" : "justify-start" }`}
+              className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               <div
                 className={`
@@ -162,10 +157,11 @@ export default function ChatBot() {
               text-sm
               break-words
 
-              ${ m.role === "user"
-                    ? "bg-cyan-500 text-white rounded-br-none"
-                    : "bg-white/10 text-white rounded-bl-none"
-                  }
+              ${
+                m.role === 'user'
+                  ? 'bg-cyan-500 text-white rounded-br-none'
+                  : 'bg-white/10 text-white rounded-bl-none'
+              }
             `}
               >
                 {m.text}
@@ -176,7 +172,6 @@ export default function ChatBot() {
           {/* LOADING */}
           {loading && (
             <div className="flex items-center gap-3 text-slate-300 text-sm">
-
               {/* <img
                 src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png"
                 alt="AI"
@@ -184,9 +179,7 @@ export default function ChatBot() {
               /> */}
 
               <div>
-                <p className="text-cyan-300 font-medium">
-                  AI is thinking...
-                </p>
+                <p className="text-cyan-300 font-medium">AI is thinking...</p>
 
                 <div className="flex gap-1 mt-1 items-end h-4">
                   <span className="w-1 h-2 bg-cyan-400 animate-bounce"></span>
@@ -196,7 +189,7 @@ export default function ChatBot() {
                   <span className="w-1 h-2 bg-cyan-400 animate-bounce [animation-delay:0.4s]"></span>
                 </div>
               </div>
-
+              <div ref={messagesEndRef}></div>
             </div>
           )}
         </div>
@@ -205,7 +198,6 @@ export default function ChatBot() {
         INPUT AREA
     ========================= */}
         <div className="p-3 border-t border-white/10 bg-white/5 flex gap-2">
-
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -233,7 +225,6 @@ export default function ChatBot() {
           >
             Send
           </button>
-
         </div>
       </div>
     </>

@@ -1,23 +1,21 @@
-"use client";
+'use client';
 
 export default function State() {
   const stats = [
-    { value: "2+", label: "Years Experience" },
-    { value: "10+", label: "Projects Built" },
-    { value: "AI", label: "Powered Apps" },
-    { value: "Full Stack", label: "MERN • FastAPI • Node Projects" },
+    { value: '2+', label: 'Years Experience' },
+    { value: '10+', label: 'Projects Built' },
+    { value: 'AI', label: 'Powered Apps' },
+    { value: 'Full Stack', label: 'MERN • FastAPI • Node Projects' },
   ];
 
   return (
     <div className="mt-16 overflow-hidden relative">
-
       {/* Fade edges */}
       <div className="pointer-events-none absolute left-0 top-0 h-full w-16 sm:w-32 bg-gradient-to-r from-[#020617] to-transparent z-10"></div>
       <div className="pointer-events-none absolute right-0 top-0 h-full w-16 sm:w-32 bg-gradient-to-l from-[#020617] to-transparent z-10"></div>
 
       {/* Marquee track */}
       <div className="flex w-max gap-4 sm:gap-6 animate-marquee">
-
         {[...stats, ...stats].map((item, index) => (
           <div
             key={index}
@@ -41,33 +39,37 @@ export default function State() {
             "
           >
             {/* Glow */}
-            <div className="
+            <div
+              className="
               absolute inset-0 opacity-0 group-hover:opacity-100
               bg-gradient-to-br from-cyan-500/10 via-transparent to-pink-500/10
               transition duration-500
-            "></div>
+            "
+            ></div>
 
             {/* Value */}
-            <h2 className="
+            <h2
+              className="
               text-2xl sm:text-4xl lg:text-5xl
               font-black text-white relative z-10
-            ">
+            "
+            >
               {item.value}
             </h2>
 
             {/* Label */}
-            <p className="
+            <p
+              className="
               text-slate-400 mt-2 sm:mt-3
               text-xs sm:text-sm lg:text-base
               relative z-10
               leading-snug
-            ">
+            "
+            >
               {item.label}
             </p>
-
           </div>
         ))}
-
       </div>
     </div>
   );

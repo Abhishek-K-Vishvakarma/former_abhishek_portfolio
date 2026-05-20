@@ -1,25 +1,25 @@
-import experience from "@/data/experience";
-import projects from "@/data/projects";
-import skills from "@/data/skills";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import experience from '@/data/experience';
+import projects from '@/data/projects';
+import skills from '@/data/skills';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 /* =========================
    FORMAT PROJECTS
 ========================= */
 const formattedProjects = projects
   .map((p, i) => {
-    return `${ i + 1 }. ${ p.title }
-Description: ${ p.description }
-Tech: ${ p.tech.join(", ") }`;
+    return `${i + 1}. ${p.title}
+Description: ${p.description}
+Tech: ${p.tech.join(', ')}`;
   })
-  .join("\n\n");
+  .join('\n\n');
 
 /* =========================
    FORMAT SKILLS
 ========================= */
 const formattedSkills = skills
-  .map((s) => `${ s.name }: ${ s.description }`)
-  .join("\n\n");
+  .map((s) => `${s.name}: ${s.description}`)
+  .join('\n\n');
 
 /* =========================
    FORMAT EXPERIENCE (IMPORTANT FIX)
@@ -27,12 +27,12 @@ const formattedSkills = skills
 const formatExperience = (experience) => {
   return experience
     .map((e, i) => {
-      return `${ i + 1 }. ${ e.role }
-Company: ${ e.company }
-Duration: ${ e.duration }
-Description: ${ e.description }`;
+      return `${i + 1}. ${e.role}
+Company: ${e.company}
+Duration: ${e.duration}
+Description: ${e.description}`;
     })
-    .join("\n\n");
+    .join('\n\n');
 };
 
 /* =========================
@@ -74,20 +74,20 @@ EXPERIENCE RULE:
 - DO NOT shorten it.
 - ALWAYS display full list as given.
 
-TOTAL EXPERIENCE COUNT: ${ experience.length }
+TOTAL EXPERIENCE COUNT: ${experience.length}
 
 =====================================
 DATA:
 =====================================
 
 Skills:
-${ formattedSkills }
+${formattedSkills}
 
 Projects:
-${ formattedProjects }
+${formattedProjects}
 
 Experience:
-${ formattedExperience }
+${formattedExperience}
 
 =====================================
 ANSWER STYLE:
@@ -122,7 +122,7 @@ STRICT IDENTITY RESTRICTION:
    - "Compare Abhishek with others"
 
    → ALWAYS use the same strict reply above.
-${ message }
+${message}
 `;
 
     const result = await model.generateContent(prompt);
@@ -133,9 +133,6 @@ ${ message }
   } catch (error) {
     console.error(error);
 
-    return Response.json(
-      { reply: "Error occurred" },
-      { status: 500 }
-    );
+    return Response.json({ reply: 'Error occurred' }, { status: 500 });
   }
 }

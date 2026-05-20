@@ -1,10 +1,6 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-export default function Button({
-  text,
-  href = "#",
-  primary = false,
-}) {
+export default function Button({ text, href = '#', primary = false }) {
   return (
     <Link
       href={href}
@@ -16,9 +12,10 @@ export default function Button({
         font-semibold
         transition-all duration-300
 
-        ${ primary
-          ? "bg-sky-400 text-black hover:bg-sky-300"
-          : "border border-white/10 bg-white/5 hover:bg-white/10 text-white"
+        ${
+          primary
+            ? 'bg-sky-400 text-black hover:bg-sky-300'
+            : 'border border-white/10 bg-white/5 hover:bg-white/10 text-white'
         }
       `}
     >
