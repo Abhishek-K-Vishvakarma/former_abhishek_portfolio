@@ -2,6 +2,8 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { useState } from "react";
+import { toast } from "sonner";
+
 
 export default function ContactPage() {
   const [form, setForm] = useState({
@@ -46,12 +48,33 @@ export default function ContactPage() {
 
       if (data.success) {
 
-        alert("Message Sent 🚀");
+        toast.success("Message Sent Successfully 🚀", {
+
+          description:
+            "Thank you for contacting me. I will respond soon.",
+
+          duration: 4000
+
+        });
 
         setForm({
+
           name: "",
+
           email: "",
+
           message: ""
+
+        });
+
+      }
+      else {
+
+        toast.error("Failed to send message ❌", {
+
+          description:
+            "Please try again."
+
         });
 
       }
